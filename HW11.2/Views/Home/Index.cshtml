@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Book>
+@{
+    ViewData["Title"] = "Books";
+    int index = 0;
+}
+
+<h1 style="text-align:center">Books</h1>
+
+@Html.Partial("AddModalPartialView", new Book())
+
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th class="col">Name</th>
+            <th class="col">Author Name</th>
+            <th class="col">ISBN</th>
+            <th class="col">Publisher</th>
+            <th class="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Author</td>
+                <td>@item.ISBN</td>
+                <td>@item.Publisher</td>
+                <td>
+                    <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal_@index">Edit</a>
+                    @await Html.PartialAsync("EditModalPartialView", item,
+                new ViewDataDictionary(ViewData)
+                {
+                {"index", index}
+                })
+                    <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal_@index">Delete</a>
+                    @await Html.PartialAsync("DeleteModalPartialView", item,
+                new ViewDataDictionary(ViewData)
+                {
+                {"index", index}
+                })
+                </td>
+            </tr>
+            index++;
+        }
+    </tbody>
+</table>
+
+

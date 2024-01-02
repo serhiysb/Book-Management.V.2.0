@@ -1,0 +1,47 @@
+﻿@model Book
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">
+    Add Book
+</button>
+
+<div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalForm" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modal-title">Add Book</h5>
+            </div>
+            <form method="post" asp-action="addBook">
+                <div class="modal-body">
+                    <div>
+                        <label class="form-label" asp-for="Name"></label>
+                        <input class="form-control" type="text" asp-for="Name" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div>
+                        <label class="form-label" asp-for="ISBN"></label>
+                        <input class="form-control" type="text" asp-for="ISBN" />
+                        <span asp-validation-for="ISBN" class="text-danger"></span>
+                    </div>
+                    <div>
+                        <label class="form-label" asp-for="Publisher"></label>
+                        <input class="form-control" type="text" asp-for="Publisher" />
+                        <span asp-validation-for="Publisher" class="text-danger"></span>
+                    </div>
+                    <div>
+                        <label class="form-label" asp-for="Author"></label>
+                        <input class="form-control" type="text" asp-for="Author" />
+                        <span asp-validation-for="Author" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input class="btn btn-primary" type="submit" value="Send" />
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
