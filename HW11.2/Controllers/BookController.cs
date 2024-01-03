@@ -6,13 +6,13 @@ using System.Diagnostics;
 
 namespace HW11._2.Controllers
 {
-    public class HomeController : Controller
+    public class BookController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<BookController> _logger;
         private readonly IGenericUnitOfWork _unitOfWork;
         private readonly IGenericRepository<Book> repoBook;
 
-        public HomeController(ILogger<HomeController> logger, IGenericUnitOfWork unitOfWork)
+        public BookController(ILogger<BookController> logger, IGenericUnitOfWork unitOfWork)
         {
             _logger = logger;
             _unitOfWork = unitOfWork;
@@ -25,6 +25,7 @@ namespace HW11._2.Controllers
             return View(books);
         }
 
+        [HttpPost]
         public async Task<IActionResult> AddBook(Book book)
         {
             await repoBook.AddEntity(book);
@@ -32,6 +33,7 @@ namespace HW11._2.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpPost]
         public async Task<IActionResult> Edit(Book book)
         {
             repoBook.UpdateEntity(book);
