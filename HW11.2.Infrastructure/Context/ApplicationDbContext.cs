@@ -13,7 +13,7 @@ namespace HW11._2.Infrastructure.Context
         DbSet<Book> Books => Set<Book>();
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
-
+            Database.EnsureCreated();
         }
 
 
